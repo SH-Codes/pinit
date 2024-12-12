@@ -21,6 +21,7 @@
 .header {
   color: #F43636;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .form {
@@ -63,7 +64,6 @@
   cursor: pointer;
 }
 
-/* AddEventForm-specific styles */
 .backButton {
   background-color: transparent;
   border: none;
@@ -114,4 +114,91 @@
   background-color: #F43636;
 }
 
+/* Drawer styles */
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #f4f4f4;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
 
+.close-drawer {
+  align-self: flex-end;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.drawer-links {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.drawer-links li {
+  margin-bottom: 10px;
+}
+
+.drawer-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+/* Notification button */
+.notification {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Empty state styles */
+.empty-state {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.icon-container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #f4f4f4;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+}
+
+.icon-container img {
+    width: 120px;
+    height: 120px;
+}
+
+.empty-icon {
+  font-size: 24px;
+  color: gray;
+}
+
+/* Add New button */
+.add-button {
+    background-color: #F43636;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-button:hover {
+  background-color: #d12f2f;
+}

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+// import { Link } from "react-router-dom";
 import "./PinitAppStyle.css";
 
 const RecoveryForm = () => {
@@ -87,9 +87,6 @@ const RecoveryForm = () => {
           Reset
         </button>
       </form>
-      {/* <p className="footerText">
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p> */}
     </div>
   );
 };

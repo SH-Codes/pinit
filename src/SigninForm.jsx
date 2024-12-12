@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./PinitAppStyle.css";
 
@@ -108,7 +108,7 @@ const SigninForm = () => {
       <p className="footerText">
         <Link to="/recovery">Forgot Password</Link>
         <br></br>
-        Don't have an account? <Link to="/signup">Sign Up</Link>
+        Dont have an account? <Link to="/signup">Sign Up</Link>
       </p>
     </div>
   );

@@ -21,6 +21,7 @@
 .header {
   color: #F43636;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .form {
@@ -50,6 +51,10 @@
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.button:hover {
+  background-color: #d32f2f;
 }
 
 .footerText {
@@ -97,7 +102,7 @@
 }
 
 .clearButton:hover {
-  background-color: #F43636;
+  background-color: #d32f2f;
 }
 
 .saveButton {
@@ -111,7 +116,5 @@
 }
 
 .saveButton:hover {
-  background-color: #F43636;
+  background-color: #d32f2f;
 }
-
-
