@@ -115,3 +115,177 @@
 }
 
 
+/* Drawer styles */
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #f4f4f4;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-drawer {
+  align-self: flex-end;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.drawer-links {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.drawer-links li {
+  margin-bottom: 10px;
+}
+
+.drawer-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+/* Notification button */
+.notification {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Empty state styles */
+.empty-state {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.icon-container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #f4f4f4;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+}
+
+.icon-container img {
+    width: 120px;
+    height: 120px;
+}
+
+.empty-icon {
+  font-size: 24px;
+  color: gray;
+}
+
+/* Add New button*/
+.add-button {
+  background-color: #F43636;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-button:hover {
+background-color: #d12f2f;
+}
+
+
+/* Default form styling */
+.event-form-details {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.event-form-details h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Styling for edit state */
+.event-form-details.editing {
+  background-color: #fff3e6;  /* Light background for edit state */
+  border: 2px solid #ff8c00;  /* Orange border for edit */
+}
+
+.event-form-details.editing .save-button {
+  background-color: #ff8c00;
+  color: white;
+}
+
+.event-form-details.editing input {
+  border: 2px solid #ff8c00;  /* Change border color for inputs */
+}
+
+.event-form-details.editing .button-group button {
+  background-color: #ff8c00;
+  color: white;
+}
+
+.event-form-details.editing .delete-button {
+  background-color: #ff3e3e;  /* Red button for delete */
+}
+
+.event-form-details.editing .share-button {
+  background-color: #4caf50;  /* Green button for share */
+}
+
+.event-form-details label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.event-form-details input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.button-group {
+  display: -moz-stack;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+utton-group button {
+  background-color: #F43636;
+  color: #ffffff;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
+
+.event-form-details input {
+  border: 1px solid #ccc;
+}
+
+.event-form-details input:focus {
+  border-color: #ff8c00;
+}
+
+.event-form-details input:invalid {
+  border-color: red;
+}
