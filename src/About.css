@@ -1,0 +1,97 @@
+/* General container styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Container */
+.about-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    width: 270px;
+    min-height: 100vh;
+  }
+  
+  /* Back button */
+  .about-back-button {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  
+  /* Page title */
+  h1 {
+    color: #F43636;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* App details */
+  .app-details {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .about-app-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    position: relative;
+  }
+  
+  .dot {
+    color: #F43636;
+  }
+  
+  .app-version {
+    font-size: 14px;
+    color: gray;
+    margin: 5px 0 10px;
+  }
+  
+  .app-description {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  /* Features */
+  .features {
+    margin-bottom: 20px;
+  }
+  
+  .features h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .features ul {
+    padding-left: 20px;
+    list-style-type: disc;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* Contact Info */
+  .contact-info {
+    margin-top: 20px;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .contact-icon {
+    font-size: 16px;
+    margin-right: 10px;
+    color: #F43636;
+  }
+  

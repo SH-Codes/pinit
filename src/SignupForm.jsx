@@ -13,6 +13,7 @@ const SignupForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateField = (name, value) => {
     let error = "";
@@ -81,18 +82,56 @@ const SignupForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate all fields again on submission
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
       const error = validateField(key, formData[key]);
       if (error) newErrors[key] = error;
     });
 
-    if (Object.keys(newErrors).length === 0) {
-      alert("Form submitted successfully!");
-    } else {
+    if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      return;
+    }
+
+    setIsSubmitting(true); // Start submission
+    try {
+      const response = await fetch("https://your-backend-url.com/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setErrors({ form: errorData.message || "Sign-up failed. Please try again." });
+        setIsSubmitting(false);
+        return;
+      }
+
+      alert("Sign-up successful!");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        confirmEmail: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      setErrors({ form: "An unexpected error occurred. Please try again later." });
+    } finally {
+      setIsSubmitting(false); // End submission
     }
   };
 
@@ -189,9 +228,10 @@ const SignupForm = () => {
         />
         {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
 
-        <button type="submit" className="button" disabled={!isFormValid}>
-          Sign Up
+        <button type="submit" className="button" disabled={!isFormValid || isSubmitting}>
+          {isSubmitting ? <span className="spinner"></span> : "Sign Up"}
         </button>
+        {errors.form && <p className="error">{errors.form}</p>}
       </form>
       <p className="footerText">
         Already have an account? <Link to="/signin">Sign In</Link>

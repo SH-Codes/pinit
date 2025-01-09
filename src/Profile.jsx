@@ -142,7 +142,7 @@ const EditProfile = () => {
         </div>
         <h2 className="profile-name">
           {formData.firstName || formData.lastName
-            ? `${formData.firstName} ${formData.lastName}`.trim()
+            ? `${formData.firstName} ${formData.lastName}`.trim().toUpperCase()
             : "Your Name Here"}
         </h2>
       </div>

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React, { useState, useRef, useEffect } from "react";
 import { useLoadScript } from "@react-google-maps/api";
+import { useNavigate, Link } from "react-router-dom";
 import "./PinitAppStyle.css";
 
 const libraries = ["places"];
@@ -15,6 +15,8 @@ function EventForm() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isCreatingEvent, setIsCreatingEvent] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -65,6 +67,10 @@ function EventForm() {
     }
   };
 
+  const handleNavigateToNotifications = () => {
+    navigate("/notificationspage");
+  };
+
   if (loadError) return <p>Error loading Google Maps API</p>;
   if (!isLoaded) return <p>Loading Google Maps API...</p>;
 
@@ -74,7 +80,12 @@ function EventForm() {
         <button className="hamburger" onClick={toggleDrawer}>
           &#9776;
         </button>
-        <button className="notification">&#128276;</button>
+        <button
+          className="notification"
+          onClick={handleNavigateToNotifications}
+        >
+          &#128276;
+        </button>
       </header>
 
       {isDrawerOpen && (
@@ -84,16 +95,13 @@ function EventForm() {
           </button>
           <ul className="drawer-links">
             <li>
-              <Link to="/">Home</Link>
+            <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <a href="#">Profile</a>
+            <Link to="/settingspage">Settings</Link>
             </li>
             <li>
-              <a href="#">Settings</a>
-            </li>
-            <li>
-              <a href="#">About</a>
+            <Link to="/about">About</Link>
             </li>
           </ul>
         </div>
@@ -136,7 +144,9 @@ function EventForm() {
             </div>
           )}
           <button
-            className={`add-button ${events.length === 0 ? "empty-state" : "event-state"}`}
+            className={`add-button ${
+              events.length === 0 ? "empty-state" : "event-state"
+            }`}
             onClick={handleAddNew}
           >
             Add New
@@ -160,6 +170,29 @@ function EventFormDetails({ event, onSave, onDelete, onShare, onCancel }) {
   const [date, setDate] = useState(event?.date || "");
   const [location, setLocation] = useState(event?.location || "");
   const [errors, setErrors] = useState({ title: "", date: "", location: "" });
+
+  const locationInputRef = useRef(null);
+  const autocompleteRef = useRef(null);
+
+  useEffect(() => {
+    if (!locationInputRef.current || !window.google) return;
+
+    autocompleteRef.current = new window.google.maps.places.Autocomplete(
+      locationInputRef.current,
+      {
+        types: ["geocode"],
+        componentRestrictions: { country: "za"},
+      }
+    );
+
+    autocompleteRef.current.addListener("place_changed", () => {
+      const place = autocompleteRef.current.getPlace();
+      if (place && place.formatted_address) {
+        setLocation(place.formatted_address);
+        setErrors((prevErrors) => ({ ...prevErrors, location: "" }));
+      }
+    });
+  }, []);
 
   const validate = (name, value) => {
     let error = "";
@@ -225,6 +258,7 @@ function EventFormDetails({ event, onSave, onDelete, onShare, onCancel }) {
         <input
           type="text"
           name="location"
+          ref={locationInputRef}
           value={location}
           onChange={handleFieldChange}
           placeholder="Enter location"

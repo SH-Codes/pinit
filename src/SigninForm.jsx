@@ -70,15 +70,16 @@ const SigninForm = () => {
     }
   };
 
-  // Calculate if the form is valid
   const isFormValid =
     Object.keys(errors).length === 0 && formData.email && formData.password;
 
   return (
     <div className="container">
+      {/* Logo added here */}
+      <img src="src/assets/pinit-black.svg" alt="App Logo" className="logo" />
       <h2 className="header">Sign In</h2>
       <form className="form" onSubmit={handleSubmit}>
-      <label htmlFor="email" className="label">Email</label>
+        <label htmlFor="email" className="label">Email</label>
         <input
           type="email"
           name="email"

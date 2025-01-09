@@ -25,8 +25,8 @@
 }
 
 /* .app {
-  min-width: 430px;
-  min-height: 932px;
+  min-width: 440px;
+  min-height: 956px;
   border: 1px solid #c0c0c0;
 } */
 
@@ -78,6 +78,12 @@ margin-bottom: 60px;
   cursor: pointer;
 }
 
+.back-button-container  {
+  margin-top: 20px;
+  font-size: 11pt;
+}
+
+
 /* AddEventForm-specific styles */
 .backButton {
   background-color: transparent;
@@ -86,6 +92,26 @@ margin-bottom: 60px;
   font-size: 16px;
   margin-bottom: 20px;
   cursor: pointer;
+}
+
+.spinner {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #F43636;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .inputGroup {
@@ -127,6 +153,22 @@ margin-bottom: 60px;
 
 .saveButton:hover {
   background-color: #F43636;
+}
+
+.save-button.inactive {
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+.save-button.active {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.save-button:hover:not(.inactive) {
+  background-color: darkred;
 }
 
 
@@ -215,12 +257,14 @@ margin-bottom: 60px;
   color: gray;
 }
 
-.pinit-logo img {
-  width: 100%;
+.logo {
+  width: 40%;
+  margin-top: 20px;
+  padding-bottom: 50px;
 }
 
 /* Add New button*/
-.add-button,  {
+.add-button {
   background-color: #F43636;
   width: 270px;
   color: #ffffff;
@@ -234,6 +278,13 @@ margin-bottom: 60px;
 
 .add-button:hover, .save-profile-button:hover {
 background-color: #d12f2f;
+}
+
+.add-button.move-to-top {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
 }
 
 
@@ -320,6 +371,11 @@ background-color: #d12f2f;
   margin-bottom: 20px
 }
 
+.pac-container {
+  box-shadow: none;
+  border: none;
+}
+
 .event-card:hover {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s;
@@ -347,7 +403,6 @@ background-color: #d12f2f;
 .event-form-details input:invalid {
   border-color: red;
 }
-
 
 .profile-photo-section {
   margin-bottom: 1rem;
@@ -407,8 +462,10 @@ input::placeholder {
 } */
 
 .profile-header {
+  display: flex;
   text-align: center;
   margin-bottom: 20px;
+  gap: 1em;
 }
 
 .profile-image {
@@ -422,6 +479,7 @@ input::placeholder {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .profile-image img {
@@ -448,8 +506,11 @@ input::placeholder {
 .profile-name {
   font-size: 18px;
   font-weight: bold;
-  margin-top: -52px;
-  margin-left: 30px;
+  margin-top: 20px;
+  margin-left: 10px;
+  padding-left: 10px;
+  margin-right: 20px;
+  overflow-wrap: break-word;
 }
 
 .section-header {

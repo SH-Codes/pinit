@@ -1,6 +1,7 @@
 import { useState } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./PinitAppStyle.css";
+import  SigninForm from "./SigninForm";
 
 const RecoveryForm = () => {
   const [formData, setFormData] = useState({
@@ -87,6 +88,13 @@ const RecoveryForm = () => {
           Reset
         </button>
       </form>
+
+      {/* Back Button */}
+      <div className="back-button-container">
+        <Link to="/signin" className="back-button">
+          Back to Sign In
+        </Link>
+      </div>
     </div>
   );
 };
