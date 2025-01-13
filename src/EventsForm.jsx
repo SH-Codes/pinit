@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { useNavigate, Link } from "react-router-dom";
+import { FaRegEye, FaRegThumbsDown, FaRegThumbsUp  } from "react-icons/fa";
 import "./PinitAppStyle.css";
 
 const libraries = ["places"];
@@ -95,13 +96,13 @@ function EventForm() {
           </button>
           <ul className="drawer-links">
             <li>
-            <Link to="/profile">Profile</Link>
+              <Link to="/profile">Profile</Link>
             </li>
             <li>
-            <Link to="/settingspage">Settings</Link>
+              <Link to="/settingspage">Settings</Link>
             </li>
             <li>
-            <Link to="/about">About</Link>
+              <Link to="/about">About</Link>
             </li>
           </ul>
         </div>
@@ -139,6 +140,20 @@ function EventForm() {
                     {new Date(event.createdAt).toLocaleDateString()}
                   </span>
                   <p className="event-title">{event.title}</p>
+                  <div className="response-container">
+                    <div>
+                    <FaRegThumbsUp className="icon" />
+                    <span>{event.confirmedCount || 0}</span>
+                    </div>
+                    <div>
+                    <FaRegThumbsDown className="icon" />
+                    <span>{event.declinedCount || 0}</span>
+                    </div>
+                    <div>
+                    <FaRegEye className="icon" />
+                    <span>{event.viewedCount || 0}</span>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>

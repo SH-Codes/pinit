@@ -94,6 +94,29 @@ margin-bottom: 60px;
   cursor: pointer;
 }
 
+.response-container div {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  padding-left: 25px;
+
+}
+
+.response-container *.icon {
+  width: 12px;
+}
+
+.response-container span {
+  margin-right: 20px;
+  font-size: 12px;
+}
+
+
+.response-container {
+margin-left: 5px;
+
+}
+
 .spinner {
   border: 3px solid rgba(0, 0, 0, 0.1);
   border-top: 3px solid #F43636;
