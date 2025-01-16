@@ -110,25 +110,32 @@ function EventForm() {
 
       {!isCreatingEvent ? (
         <div className="event-list-container">
-          <header className="header">
-            <h2 className="app-title">My Events</h2>
-          </header>
-          {events.length === 0 ? (
-            <div className="empty-state">
-              <div className="icon-container">
-                <img
-                  className="empty-icon"
-                  src="\src\assets\empty-inbox.png"
-                  alt="Empty Icon"
-                />
-              </div>
-              <p>
-                There are no events yet.
-                <br />
-                Click "Add New" to create one!
-              </p>
+        <header className="header">
+          <h2 className="app-title">My Events</h2>
+        </header>
+        {events.length === 0 ? (
+          <div className="empty-state">
+            <div className="icon-container">
+              <img
+                className="empty-icon"
+                src="\src\assets\empty-inbox.png"
+                alt="Empty Icon"
+              />
             </div>
-          ) : (
+            <p>
+              There are no events yet.
+              <br />
+              Click "Add New" to create one!
+            </p>
+            <button className="add-button empty-state" onClick={handleAddNew}>
+              Add New
+            </button>
+          </div>
+        ) : (
+          <div className="events-container">
+            <button className="add-button event-state" onClick={handleAddNew}>
+              Add New
+            </button>
             <div className="events-list">
               {events.map((event) => (
                 <div
@@ -137,36 +144,33 @@ function EventForm() {
                   onClick={() => handleEditEvent(event)}
                 >
                   <span className="event-created">
-                    {new Date(event.createdAt).toLocaleDateString()}
+                  {new Intl.DateTimeFormat("en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                    }).format(new Date(event.createdAt))}
                   </span>
                   <p className="event-title">{event.title}</p>
                   <div className="response-container">
                     <div>
-                    <FaRegThumbsUp className="icon" />
-                    <span>{event.confirmedCount || 0}</span>
+                      <FaRegThumbsUp className="icon" />
+                      <span>{event.confirmedCount || 0}</span>
                     </div>
                     <div>
-                    <FaRegThumbsDown className="icon" />
-                    <span>{event.declinedCount || 0}</span>
+                      <FaRegThumbsDown className="icon" />
+                      <span>{event.declinedCount || 0}</span>
                     </div>
                     <div>
-                    <FaRegEye className="icon" />
-                    <span>{event.viewedCount || 0}</span>
+                      <FaRegEye className="icon" />
+                      <span>{event.viewedCount || 0}</span>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-          )}
-          <button
-            className={`add-button ${
-              events.length === 0 ? "empty-state" : "event-state"
-            }`}
-            onClick={handleAddNew}
-          >
-            Add New
-          </button>
-        </div>
+          </div>
+        )}
+      </div>      
       ) : (
         <EventFormDetails
           event={selectedEvent}
@@ -281,13 +285,13 @@ function EventFormDetails({ event, onSave, onDelete, onShare, onCancel }) {
         {errors.location && <p className="error-message">{errors.location}</p>}
       </label>
       <div className="button-group">
-        <button
-          className="save-button"
-          onClick={handleSave}
-          disabled={!title || !date || !location}
-        >
-          Save
-        </button>
+      <button
+      className={`save-button ${!title || !date || !location ? "disabled" : "enabled"}`}
+      onClick={handleSave}
+      disabled={!title || !date || !location}
+      >
+        Save
+      </button>
         {event && (
           <>
             <button className="delete-button" onClick={() => onDelete(event.id)}>

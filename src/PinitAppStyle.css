@@ -165,33 +165,23 @@ margin-left: 5px;
 }
 
 .saveButton {
-  background-color: #F43636;
   color: #ffffff;
   border: none;
   padding: 10px;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, cursor 0.3s ease;
 }
 
-.saveButton:hover {
-  background-color: #F43636;
-}
 
-.save-button.inactive {
-  background-color: grey;
-  color: white;
+.save-button.disabled {
+  background-color: #c0c0c0;
   cursor: not-allowed;
 }
 
-.save-button.active {
-  background-color: red;
-  color: white;
-  cursor: pointer;
-}
-
-.save-button:hover:not(.inactive) {
-  background-color: darkred;
+.save-button.enabled {
+  background-color: #f43636;
 }
 
 
@@ -301,15 +291,8 @@ margin-left: 5px;
 
 .add-button:hover, .save-profile-button:hover {
 background-color: #d12f2f;
+transition: background-color 0.3s ease, cursor 0.3s ease;
 }
-
-.add-button.move-to-top {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 10;
-}
-
 
 /* Default form styling */
 .event-form-details {
@@ -387,11 +370,22 @@ background-color: #d12f2f;
   display: block;
 }
 
-.event-card {
+/* .event-card {
   background-color: #f4f4f4;
   border-radius: 8px; 
   padding: 20px;
   margin-bottom: 20px
+} */
+
+.event-card {
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  cursor: pointer;
+  width: 240px !important;
 }
 
 .pac-container {
@@ -413,6 +407,8 @@ background-color: #d12f2f;
 
 .event-title {
   font-weight: bold;
+  font-size: 16px;
+  padding-top: 10px;
 }
 
 .event-form-details input {
@@ -493,12 +489,11 @@ input::placeholder {
 
 .profile-image {
   position: relative;
-  display: inline-block;
+  display: flex;
   width: 80px;
   height: 80px;
   border-radius: 50%;
   background-color: #e0e0e0;
-  display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
