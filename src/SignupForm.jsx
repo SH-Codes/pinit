@@ -99,7 +99,7 @@ const SignupForm = () => {
 
     setIsSubmitting(true); // Start submission
     try {
-      const response = await fetch("https://your-backend-url.com/api/signup", {
+      const response = await fetch("http://pinit-env.eba-ji4henu9.eu-north-1.elasticbeanstalk.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
