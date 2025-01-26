@@ -54,20 +54,26 @@ function EventForm() {
   };
 
   const handleShareEvent = (event) => {
-    const shareText = `Check out this event: ${event.title}\nDate: ${event.date}\nLocation: ${event.location}`;
+    const eventUrl = `${window.location.origin}/event/${event.id}`;
+    const shareText = `Check out this event: ${event.title}\nDate: ${event.date}\nLocation: ${event.location}\nLink: ${eventUrl}`;
+  
     if (navigator.share) {
       navigator
         .share({
           title: event.title,
           text: shareText,
-          url: window.location.href,
+          url: eventUrl,
         })
         .catch((err) => console.error("Sharing failed:", err));
     } else {
-      alert(`Your browser doesn't support sharing:\n\n${shareText}`);
+      alert(`Copy and share this link:\n\n${eventUrl}`);
     }
   };
 
+  const handleViewAttendees = (event) => {
+    navigate(`/attendeesform`, { state: { title: event.title, date: event.date } });
+  };
+  
   const handleNavigateToNotifications = () => {
     navigate("/notificationspage");
   };

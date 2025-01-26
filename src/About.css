@@ -6,10 +6,10 @@
 }
 
 /* Container */
-.about-container {
+.about-page {
     padding: 20px;
     background-color: #f9f9f9;
-    width: 270px;
+    width: 350px;
     min-height: 100vh;
   }
   

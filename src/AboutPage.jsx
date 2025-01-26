@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import "./About.css";
 
-const navigate = useNavigate();
-
 const AboutPage = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="about-page">
       <button className="about-back-button" onClick={() => navigate(-1)}>

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom"; // to capture the event ID from the URL
 import "./AttendeesForm.css";
 
 const AttendeesForm = () => {
+  const { eventId } = useParams(); // capturing eventId from URL
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -10,7 +12,30 @@ const AttendeesForm = () => {
     response: "Pending",
   });
 
+  const [eventDetails, setEventDetails] = useState({
+    title: "",
+    date: "",
+  });
+
   const [errors, setErrors] = useState({});
+
+  // Fetch event details based on eventId when the component mounts
+  useEffect(() => {
+    const fetchEventDetails = async () => {
+      try {
+        const response = await fetch(`/api/events/${eventId}`);
+        const data = await response.json();
+        setEventDetails({
+          title: data.title,
+          date: new Date(data.date).toLocaleDateString(), // formatting the date
+        });
+      } catch (error) {
+        console.error("Error fetching event details:", error);
+      }
+    };
+
+    fetchEventDetails();
+  }, [eventId]);
 
   const validateField = (name, value) => {
     let error = "";
@@ -102,7 +127,8 @@ const AttendeesForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
-      <h2 className="form-title">Event Title</h2>
+      <h2 className="form-title">{eventDetails.title}</h2>
+      <p className="form-date">{eventDetails.date}</p>
 
       <label className="form-label">First Name</label>
       <input

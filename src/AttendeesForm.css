@@ -1,7 +1,8 @@
 .form-container {
-    max-width: 400px;
+    max-width: 325px;
     margin: auto;
-    padding: 20px;
+    padding: 10px;
+    padding-bottom: 30px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
@@ -21,10 +22,18 @@
     font-weight: bold;
     font-size: 14px;
   }
+
+  
+  .form-input {
+    width: 300px;
+  }
+  
+  .form-select {
+    width: 322px;
+  }
   
   .form-input,
   .form-select {
-    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     font-size: 16px;
@@ -32,6 +41,8 @@
     border-radius: 4px;
     outline: none;
   }
+
+
   
   .form-input:focus,
   .form-select:focus {
@@ -40,7 +51,7 @@
   }
   
   .form-button {
-    width: 100%;
+    width: 322px;
     padding: 10px;
     font-size: 16px;
     background-color: #F43636;
