@@ -84,7 +84,6 @@ const SignupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     // Validate all fields again on submission
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
@@ -97,9 +96,9 @@ const SignupForm = () => {
       return;
     }
 
-    setIsSubmitting(true); // Start submission
+    setIsSubmitting(true); // Start submission -- http://pinit-env.eba-ji4henu9.eu-north-1.elasticbeanstalk.com/signup --
     try {
-      const response = await fetch("http://pinit-env.eba-ji4henu9.eu-north-1.elasticbeanstalk.com", {
+      const response = await fetch("http://pinit-env.eba-ji4henu9.eu-north-1.elasticbeanstalk.com/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -128,6 +127,7 @@ const SignupForm = () => {
         password: "",
         confirmPassword: "",
       });
+      setErrors({});
     } catch (error) {
       setErrors({ form: "An unexpected error occurred. Please try again later." });
     } finally {
@@ -135,16 +135,15 @@ const SignupForm = () => {
     }
   };
 
-  const isFormValid =
-    Object.keys(errors).length === 0 &&
-    formData.firstName &&
-    formData.lastName &&
-    formData.email &&
-    formData.confirmEmail &&
-    formData.password &&
-    formData.confirmPassword &&
-    formData.email === formData.confirmEmail &&
-    formData.password === formData.confirmPassword;
+  const isFormValid = (() => {
+    const hasNoErrors = Object.values(errors).every((error) => !error); // No errors
+    const allFieldsFilled = Object.values(formData).every((value) => value.trim() !== ""); // No empty fields
+    const emailsMatch = formData.email === formData.confirmEmail; // Email fields match
+    const passwordsMatch = formData.password === formData.confirmPassword; // Password fields match
+  
+    return hasNoErrors && allFieldsFilled && emailsMatch && passwordsMatch;
+  })();
+  
 
   return (
     <div className="container">
@@ -228,7 +227,11 @@ const SignupForm = () => {
         />
         {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
 
-        <button type="submit" className="button" disabled={!isFormValid || isSubmitting}>
+        <button 
+        type="submit"
+        className={`signup-button ${isFormValid ? "active" : "inactive"}`}
+        disabled={!isFormValid || isSubmitting}
+        >
           {isSubmitting ? <span className="spinner"></span> : "Sign Up"}
         </button>
         {errors.form && <p className="error">{errors.form}</p>}

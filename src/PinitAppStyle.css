@@ -67,6 +67,29 @@ margin-bottom: 60px;
   cursor: pointer;
 }
 
+.signup-button {
+  width: 322px;
+  margin-top: 18px;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.signup-button.inactive {
+  background-color: #c0c0c0;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+.signup-button.active {
+  background-color: #F43636;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 .footerText {
   margin-top: 15px;
   font-size: 14px;
